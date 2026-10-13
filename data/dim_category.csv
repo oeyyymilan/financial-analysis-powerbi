@@ -1,0 +1,11 @@
+category_id,category_name,category_type
+1,Product Sales,Revenue
+2,Service Fees,Revenue
+3,Subscriptions,Revenue
+4,Interest Income,Revenue
+5,Salaries,Expense
+6,Marketing,Expense
+7,Operations,Expense
+8,Rent,Expense
+9,Software,Expense
+10,Travel,Expense

@@ -1,0 +1,14 @@
+{
+  "name": "FinTheme",
+  "dataColors": ["#1F6F8B", "#F29E4C", "#17A398", "#D1495B", "#8E7DBE", "#6B7280", "#99C24D", "#0B2545"],
+  "background": "#FFFFFF",
+  "foreground": "#1F2937",
+  "tableAccent": "#0B2545",
+  "good": "#17A398",
+  "neutral": "#F29E4C",
+  "bad": "#D1495B",
+  "textClasses": {
+    "title": {"fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#0B2545"},
+    "label": {"fontFace": "Segoe UI", "fontSize": 10, "color": "#1F2937"}
+  }
+}

@@ -1,0 +1,38 @@
+// 12 custom measures — create in a table named "_Measures" (Enter Data > blank table)
+
+// ---- 5 core KPIs ----
+Total Revenue =
+CALCULATE ( SUM ( vw_transactions[amount] ),
+    vw_transactions[category_type] = "Revenue", vw_transactions[status] = "Completed" )
+
+Total Expenses =
+CALCULATE ( SUM ( vw_transactions[amount] ),
+    vw_transactions[category_type] = "Expense", vw_transactions[status] = "Completed" )
+
+Net Profit = [Total Revenue] - [Total Expenses]
+
+Profit Margin % = DIVIDE ( [Net Profit], [Total Revenue], 0 )
+
+Avg Transaction Value =
+CALCULATE ( AVERAGE ( vw_transactions[amount] ),
+    vw_transactions[category_type] = "Revenue", vw_transactions[status] = "Completed" )
+
+// ---- 7 supporting measures ----
+Transaction Count = COUNTROWS ( vw_transactions )
+
+Failed Txn Rate % =
+DIVIDE ( CALCULATE ( COUNTROWS ( vw_transactions ), vw_transactions[status] = "Failed" ),
+         [Transaction Count], 0 )
+
+Revenue LY = CALCULATE ( [Total Revenue], SAMEPERIODLASTYEAR ( 'Date'[full_date] ) )
+
+Revenue YoY % = DIVIDE ( [Total Revenue] - [Revenue LY], [Revenue LY] )
+
+Revenue MoM % =
+VAR PrevM = CALCULATE ( [Total Revenue], DATEADD ( 'Date'[full_date], -1, MONTH ) )
+RETURN DIVIDE ( [Total Revenue] - PrevM, PrevM )
+
+Revenue YTD = TOTALYTD ( [Total Revenue], 'Date'[full_date] )
+
+Revenue Share % =
+DIVIDE ( [Total Revenue], CALCULATE ( [Total Revenue], ALL ( vw_transactions[category_name] ) ) )
